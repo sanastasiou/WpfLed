@@ -1,0 +1,58 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        xmlns:local="clr-namespace:LedTest"
+        xmlns:uc="clr-namespace:LedControl;assembly=LedControl"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        mc:Ignorable="d" 
+        x:Class="LedTest.MainWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:ColorToSCBrushConverter x:Key="ColorToSCBrushConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20.5" />
+            <RowDefinition Height="39.5"/>
+            <RowDefinition Height="4.5"/>
+            <RowDefinition Height="29"/>
+            <RowDefinition Height="6.5" />
+            <RowDefinition Height="27.5"/>
+            <RowDefinition Height="81.5" />
+            <RowDefinition Height="8.5"/>
+            <RowDefinition Height="29.5" />
+            <RowDefinition Height="0.085*" />
+            <RowDefinition Height="0.423*"/>
+            <RowDefinition Height="0.492*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.02*" />
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="0.105*"/>
+            <ColumnDefinition Width="0.104*"/>
+            <ColumnDefinition Width="0.116*" />
+            <ColumnDefinition Width="0.097*"/>
+            <ColumnDefinition Width="0.105*"/>
+            <ColumnDefinition Width="0.353*"/>
+        </Grid.ColumnDefinitions>
+        <uc:Led x:Name="ledWithoutBinding" Flashing="False" FlashingPeriod="500" ColorNull="Gray" ColorOn="Green" ColorOff="Red" Grid.Column="1" Grid.Row="1" />
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,-2.061,0"><Run Text="Led without binding"/></TextBlock>
+        <Button x:Name="btnChange"  Content="Turn On/Off" Click="btnChange_Click" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
+        <uc:Led IsActive="{Binding LedStatus, Mode=OneWay}" Flashing="{Binding Flash}" ColorNull="Gray"  Grid.Column="5" Grid.Row="1" />
+        <TextBlock Grid.Column="5" Margin="-0.122,0,12.236,0" Grid.ColumnSpan="2"><Run Text="Led with binding"/></TextBlock>
+        <Button x:Name="btnChange2"  Grid.Row="3" Grid.Column="5"  Content="Turn On/Off" Click="btnChange2_Click" Grid.ColumnSpan="2" />
+        <Button x:Name="btnChangeColor"  Grid.Row="8" Grid.Column="1"  Content="Change color" Click="btnChangeColor_Click" Grid.ColumnSpan="2"  />
+        <Button x:Name="btnChangeFlash"  Grid.Row="5"  Content="Change flashing" Click="btnChangeFlash_Click" Grid.ColumnSpan="2" Grid.Column="5"  />
+        <ListBox Name="listboxChooseColor" ItemsSource="{Binding ColorList}"  Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="5" Grid.RowSpan="2">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Rectangle Width="100" Height="18" Fill="{Binding Converter={StaticResource ColorToSCBrushConverter}}" Margin="1" />
+                    </Grid>                    
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Change flashing" Grid.Column="1" Click="btnChangeFlashNoBinding_Click" Grid.Row="10" Grid.ColumnSpan="2" />
+    </Grid>
+</Window>
