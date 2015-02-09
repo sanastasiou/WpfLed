@@ -29,14 +29,14 @@ namespace LedTest
             }
         }       
 
-        private Color coloreOff;
-        public Color ColoreOff
+        private Color _colorOff;
+        public Color ColorOff
         {
-            get { return coloreOff; }
+            get { return _colorOff; }
             set
             {
-                coloreOff = value;
-                this.OnPropertyChanged("ColoreOff");
+                _colorOff = value;
+                this.OnPropertyChanged("ColorOff");
             }
         }
 
@@ -55,13 +55,7 @@ namespace LedTest
         public Color ColorOn
         {
             get { return _colorOn; }            
-        }
-
-        private Color _colorOff = Colors.Red;
-        public Color ColorOff
-        {
-            get { return _colorOff; }
-        }       
+        }    
 
         #endregion
 
@@ -80,7 +74,7 @@ namespace LedTest
         //change the status of the led in binding
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            if (ledWithoutBinding.IsActive == null)
+            if (ledWithoutBinding.IsActive)
                 ledWithoutBinding.IsActive = true;
             else
                 ledWithoutBinding.IsActive = !ledWithoutBinding.IsActive;
@@ -108,7 +102,7 @@ namespace LedTest
             }
             else
             {
-                ledWithoutBinding.ColorNull = (Color)listboxChooseColor.SelectedItem;
+                ledWithoutBinding.ColorBusy = (Color)listboxChooseColor.SelectedItem;
             }           
             
            //TODO  with binding

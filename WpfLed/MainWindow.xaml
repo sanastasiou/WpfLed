@@ -36,10 +36,10 @@
             <ColumnDefinition Width="0.105*"/>
             <ColumnDefinition Width="0.353*"/>
         </Grid.ColumnDefinitions>
-        <uc:Led x:Name="ledWithoutBinding" Flashing="False" FlashingPeriod="500" ColorNull="Gray" ColorOn="Green" ColorOff="Red" Grid.Column="1" Grid.Row="1" />
+        <uc:Led x:Name="ledWithoutBinding" Flashing="False" FlashingPeriod="500" ColorBusy="Gray" ColorOn="Green" ColorOff="Red" Grid.Column="1" Grid.Row="1" />
         <TextBlock Grid.Column="1" Grid.ColumnSpan="2" Margin="0,0,-2.061,0"><Run Text="Led without binding"/></TextBlock>
         <Button x:Name="btnChange"  Content="Turn On/Off" Click="btnChange_Click" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
-        <uc:Led IsActive="{Binding LedStatus, Mode=OneWay}" Flashing="{Binding Flash}" ColorNull="Gray"  Grid.Column="5" Grid.Row="1" />
+        <uc:Led IsActive="{Binding LedStatus, Mode=OneWay}" Flashing="{Binding Flash}" ColorBusy="Gray"  Grid.Column="5" Grid.Row="1" />
         <TextBlock Grid.Column="5" Margin="-0.122,0,12.236,0" Grid.ColumnSpan="2"><Run Text="Led with binding"/></TextBlock>
         <Button x:Name="btnChange2"  Grid.Row="3" Grid.Column="5"  Content="Turn On/Off" Click="btnChange2_Click" Grid.ColumnSpan="2" />
         <Button x:Name="btnChangeColor"  Grid.Row="8" Grid.Column="1"  Content="Change color" Click="btnChangeColor_Click" Grid.ColumnSpan="2"  />
