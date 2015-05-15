@@ -180,16 +180,24 @@ namespace LedControl
                 {
                     if(!led.timer.IsEnabled)
                     {
-                        led.backgroundColor.Color = led.ColorOn;
-                        led.timer.IsEnabled = true;
+                        led.backgroundColor.Color = led.ColorBusy;
+                        led.timer.IsEnabled       = true;
                         led.timer.Start();
                     }
                 }
                 else
                 {
+                    //flashing just stopped - color should be "on"
                     led.timer.Stop();
-                    led.timer.IsEnabled = false;
+                    led.timer.IsEnabled       = false;
+                    led.backgroundColor.Color = led.ColorOn;
                 }   
+            }
+            else
+            {
+                led.timer.Stop();
+                led.timer.IsEnabled       = false;
+                led.backgroundColor.Color = led.ColorOff;
             }
         }
 
